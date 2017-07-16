@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1 class="bigbrand">projects list</h1>
+<div class="centerstage">
+
+
+    {% for project in project_list %}
+        <div class="post">
+
+            <h1 class="techfont">{{ project.title }}</h1>
+            <div class="date">
+                <p>{{ project.start_time|date:"M Y"}} - {{ project.end_time|date:"M Y"}}</p>
+                <p>{{project.text|linebreaks}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

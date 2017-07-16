@@ -1,0 +1,110 @@
+.techfont{
+  font-family:'Righteous', cursive;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.bigbrand{
+  font-family: 'Fascinate', cursive;
+  font-size: 40px;
+}
+
+.centerstage{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postdate{
+  text-align: center;
+}
+
+.posttitle{
+  font-family: 'Righteous',cursive;
+  font-size: 3em;
+  text-align: center;
+}
+
+.postcontent{
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.5em;
+}
+
+.btn-comment{
+  position: absolute;
+  right: 0px;
+}
+.loader {
+  filter:hue-rotate(0deg);
+  color:linear-gradient(45deg,#0f8,#08f);
+  animation:hue 10000ms infinite linear;
+
+}
+
+@keyframes spinify {
+  0% {
+    transform: translate(0px,0px);
+
+  }
+  33% {
+    transform: translate(0px,24px);
+    border-radius:100%;
+    width:10px;
+    height:10px;
+
+  }
+   66% {
+    transform:translate(0px,-16px);
+  }
+
+   88% {
+    transform:translate(0px,4px);
+
+  }
+  100% {
+    transform:translate(0px,0px);
+  }
+}
+@keyframes hue{
+  0%{filter: hue-rotate(0deg);}
+  100%{filter:hue-rotate(360deg);}
+
+}
+
+nav {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  /*font-family: 'Righteous', cursive;*/
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+#nav-2 {
+  background: #5175C0;
+}
+
+.link-1 {
+  transition: 0.4s;
+  color: #ffffff;
+  /*font-size: 40px;*/
+  text-decoration: none;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+/*.link-1:hover {
+  border-right: 2px dotted #ffffff;
+  padding-bottom: 20px;
+}*/
+
+.link-2 {
+  transition: 0.4s;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+.link-2:hover {
+  background-color: #ffffff;
+  color: #5175C0;
+  padding: 24px 10px;
+  text-decoration: none;
+}
