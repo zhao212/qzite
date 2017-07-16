@@ -4,6 +4,7 @@ from blog import views
 urlpatterns = [
     url(r'^$',views.PostListView.as_view(),name = 'post_list'),
     url(r'^about/$', views.AboutView.as_view(),name='about'),
+    url(r'^apps/$', views.AppView.as_view(),name='apps_list'),
     url(r'^project/$',views.ProjectListView.as_view(),name = 'project_list'),
     url(r'^post/(?P<pk>\d+)$',views.PostDetailView.as_view(),name='post_detail'),
     url(r'^post/new/$',views.CreatePostView.as_view(),name='post_new'),

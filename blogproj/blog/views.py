@@ -14,6 +14,9 @@ from django.views.generic import (TemplateView, ListView,DetailView,CreateView,U
 class AboutView(TemplateView):
     template_name = 'about.html'
 
+class AppView(TemplateView):
+    template_name = 'apps_list.html'
+
 class ProjectListView(ListView):
     model = Project
     def get_queryset(self):
