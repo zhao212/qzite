@@ -1,23 +1,694 @@
-html,
-body {
+$pixel-color-map: (
+  'r' : #ef3705,
+  'e': #992809,
+  'w': #fff,
+  'k': #000,
+  'o': transparent,
+  't': #e9c6b4,
+  'p': #f4ed4b,
+  'b': #0fbdd5,
+  'y': #e2b73e,
+  'n': #b08508,
+  'g': #eed300,
+  'h': #f8871e,
+  'f': #919aba,
+  'i': #eee,
+  'q': #db6c8d,
+  's': #904132,
+  'u': #D8BFD8,
+  'z': #8fee7c,
+  'x': #4ba77f,
+  'v': #94e5af
+);
+
+// Size of the pixels
+$pixel-size: 5px !default;
+
+$pixel-art:(
+  blackmage: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o k k k k o o o o)
+    (o o o o o o o o o o o o o k k k y y k o o o o)
+    (o o o o o o o o o o o o k k y y y n k o o o o)
+    (o o o o o o o o o o k k k y y y n k k o o o o)
+    (o o o o o o o o k k k y y y y n n k o o o o o)
+    (o o k k k k k k k y y y y n n n k k o o o o o)
+    (o o k y y y y y y y y n n n n n k o o o o o o)
+    (o o k k n n n n y y y y n n n n k o o o o o o)
+    (o o o k k k k n n n n y y y n k k o o o o o o)
+    (o o o o o k k k k k n n n n n n k k o o o o o)
+    (o o o o o k k y k k k k k n n n n k k o o o o)
+    (o o o o k k k y k k y k k k k n n n k k o o o)
+    (o o o k k b k k k k y k k k k b k n n k o o o)
+    (o o o k b k k k k k k k k k k k b k k k o o o)
+    (o o o k b b b k k k b b b b b b b k o o o o o)
+    (o o k k k b b b b b b k k k b b k k o o o o o)
+    (o o k y y k b b b k k b b b b b b k o o o o o)
+    (o o k y y k b b k k k b b b b b b k o o o o o)
+    (o o k k k b b b y y k b b b b b b k o o o o o)
+    (o o o k b k b b y y k b b b b b b k o o o o o)
+    (o o o k b k b b k k k b b b b b k k o o o o o)
+    (o o o k b b k b b b b k b b b b k o o o o o o)
+    (o o o k b b b k b b b k b b b b k k o o o o o)
+    (o o k k b b b b k k b b k b b k b k k o o o o)
+    (o o k b b b b b b b b b b k k b b b k o o o o)
+    (o o k k k k k k k k k k k k k k k k k o o o o)
+  ),
+
+  whitemage: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o k k k k k k o o o o)
+    (o o o o o o o o o o k k k k w w w i k k o o o)
+    (o o o o o o o o k k k w w w w w w w i k o o o)
+    (o o o o o o k k k w w w w w w w w w i k o o o)
+    (o o o o o k k w w w w w w w w i k w i k o o o)
+    (o o o o k k w w w w w w w w w w i k i k o o o)
+    (o o o k k w k k k k k k w w w w w i k k o o o)
+    (o o o k w k k r r r r r k w w w w i k o o o o)
+    (o o o k i k r k t r r r r k w w w i k o o o o)
+    (o o o k k i k t k t k t r r w w w i k o o o o)
+    (o o o o k k i k t k t t t r w w i k k o o o o)
+    (o o o k k k k k t k t t t k w w i k o o o o o)
+    (o o o k t t t k k k k k k k k i k k o o o o o)
+    (o o k k t t t r r r i i i i i k i k k o o o o)
+    (o o k t k t t r r w w w w w w w w i k o o o o)
+    (o o k t t k k r w w w w w w w w w i k o o o o)
+    (o o k k k i k r r r w w w w w w w i k o o o o)
+    (o o o k r i k r r w w w w w w w w i k o o o o)
+    (o o o k w i k r w w w w w w w w w i k o o o o)
+    (o o o k r w i k r r r w w w w w w k k o o o o)
+    (o o o k w w i k r r w w w w w w w k o o o o o)
+    (o o o k k r w i k r r r r w w w w k k o o o o)
+    (o o o o k k w w i k r r w w r w r i k o o o o)
+    (o o o o k r w w w r k r r r r w r r k k o o o)
+    (o o o o k r r w r r r k k r r r r r r k o o o)
+    (o o o o k k k k k k k k k k k k k k k k o o o)
+  ),
+
+  redmage: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o k k k k k k k k k k k o o o o)
+    (o o o o o o k k k r r r e k w w w w k o o o o)
+    (o o o o o o k r r r r r e w w k k k k o o o o)
+    (o o o o o o k r r r r r w w w w k k k k o o o)
+    (o o o o o o k r r r r r w w e k k e e k o o o)
+    (o o o o o k k r r r r w e e e e e e k k o o o)
+    (o o o o k k e e e e e e e e e e e k k o o o o)
+    (o o k k k e e e e e e e e e w k k k o o o o o)
+    (o o k e e e e e e k k w w w w k k o o o o o o)
+    (o o k k k k k k k t t w w w w w k k o o o o o)
+    (o o o o k k k t k t t w w w w w w k k o o o o)
+    (o o o k k e k t t t t w w r w w w w k o o o o)
+    (o o k k e e k r r r r w r r r w e w k k o o o)
+    (o o k e k k e k r r r w r r r w e e w k o o o)
+    (o o k k k k k k k k k r r r r r e e k k o o o)
+    (o o k t t t k r r k t t k r r r r e k k o o o)
+    (o o k t t t k r r k t t t k r r r e e k o o o)
+    (o o k t t t k r r k t t t r k r r e e k o o o)
+    (o o k k e k k k r k k k k r r k r r e k o o o)
+    (o o o k e k k k r r r r r r k k k r e k o o o)
+    (o o o k e k k k k w w w w w k k k r e k o o o)
+    (o o o k e k k k k r r r r e k k k k e k o o o)
+    (o o o k e e e e k r r r r e k e e e e k o o o)
+    (o o o k k k k k e e e e e e k k k k e k o o o)
+    (o o o o o o o k k k k k k k k o o k k k o o o)
+  ),
+
+  chocobo: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o k k k k o o k k o o o o o o)
+    (o o o o o o o o k p p p p k k p g k o o o o o)
+    (o o o o o o o o k p p p p p k g p g k o o o o)
+    (o o o o o o o o o k k p p p g g g p p k o o o)
+    (o o o o o o o o o k p g p p p p p p p k o o o)
+    (o o o o o o o o k p g p p p p p p p p p k o o)
+    (o o o k k k o o k p k p p p p p p p p p k o o)
+    (o k k g g g k o k p k p p p p p p w w p p k o)
+    (k p p p p p p k k k k p p p p p w w k p h k o)
+    (o k p p p p g k k k k g p p p p w k w h h h k)
+    (o k g p p p p g k k k g g g p p w b b h h h k)
+    (k p p p p p p p g g k k g p p t t h h h h p k)
+    (o k p p p p p p k g g k k p p k k k k k k k o)
+    (o k g g p p k k g p p p g g k g g k o o o o o)
+    (o o k g g k p p p p p p p p g p p k o o o o o)
+    (o o o k k p p p p p p p p p p g p p k o o o o)
+    (o o o o k p p p p p p p p p p k k k o o o o o)
+    (o o o k k g p p p p p p p p k k k k  o o o o)
+    (o o k w h h k k k g g k k k h w w w k o o o o)
+    (o o o k k h h h k k h h h h h h w w k o o o o)
+    (o o o o o k h k w h h h h h w w w k o o o o o)
+    (o o o o o o k k w h h k k k k k k o o o o o o)
+    (o o o o o o o o k k k o o o o o o o o o o o o)
+  ),
+
+  moogle: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o k o o o o o o o o o o)
+    (o o o o o o o o o o k k r k o o o o o o o o o)
+    (o o o o o o o o o o k o k o o o o o o o o o o)
+    (o o o o o o k k o o k o o o k k o o o o o o o)
+    (o o o o o k i w k k k k k k i i k o o o o o o)
+    (o o o o o k i q i i w w i i q i k o o o o o o)
+    (o o o o o k i i w w w w w w i i k o o o o o o)
+    (o o o o o k i w w w w w w w w i k o o o o o o)
+    (o o o o o k i w w w w w w w w i k o o o o o o)
+    (o o o o o k i k k w w w w k k i k o o o o o o)
+    (o o o k k k i w k k w w k k w i k k k o o o o)
+    (o o o k t k i w w k w w k w w i k t k o o o o)
+    (o o o k t k w w w w r r w w w w k t k o o o o)
+    (o o o k q q k i w w r r w w i k q q k o o o o)
+    (o o o k q k w w w w w w w w w w k q k o o o o)
+    (o o o o k i w w w w w w w w w w i k o o o o o)
+    (o o o o k w k w w w w w w w w k w k o o o o o)
+    (o o o o k f k w w w w w w w w k i k o o o o o)
+    (o o o o o k k f w f f f f w i k k o o o o o o)
+    (o o o o o o k w w w f f w w w k o o o o o o o)
+    (o o o o o k k k k k k k k k k k k o o o o o o)
+  ),
+
+  aeris: (
+    (o o o o o o o o o o o o o o o o o o o k k k o)
+    (o o o o o o k k k o o o o o k k k o k b b b k)
+    (o o o o o k s s s k o o o k s s s k k b b b k)
+    (o o o o o k s s s s k k k s s s s s k b b b k)
+    (o o o o k s s s s s s k s s s s s s k b b b k)
+    (o o o o k s s s s k s k s k s s s s k b b b k)
+    (o o o o k s s s k k s s s k k s s s k b b b k)
+    (o o o o k s s s k k k s k k k s s s s k b k o)
+    (o o o k s s s k k k t t t k k k s s s k b k o)
+    (o o o k s s s k t t t t t t t k s s s k b k o)
+    (o o o k s s s t t t t t t t t t s s s k b k o)
+    (o o k k s s t t k k t t t k k t t s s k k k o)
+    (o k u k s s t k b b t t t b b k t s s k u k o)
+    (o k u k s s t b b w t t t w b b t s s k u k k)
+    (k u u k s t t w b k t t t k b w t t s k u u k)
+    (k k k k s t t w b k t t t k b w t t s k k k k)
+    (o o o k s k t t t t t t t t t t t k s k b k o)
+    (o o o k s s k t t t t t t t t t k s s k b k o)
+    (o o o k s s s k k k k k k k k k s s s k b k o)
+    (o o o k s s s r r r t t t r r r s s k k k k o)
+    (o o o k s s s r r r u t u r r s s s k t t k o)
+    (o o o o k s s s r r u u u r r s t t k t t k o)
+    (o o o k k t s s r r u u u r r k t k k k k k o)
+    (o o o k t t k s u u u u u u u k k o o k b k o)
+    (o o o k t t k u u u u u u u u k o o o k b k o)
+    (o o o k k k k u u u u u u u u k o o o k b k o)
+    (o o o o o o k u u u u u u u u k o o o k b k o)
+    (o o o o o o k u u u u u u u u k o o o k b k o)
+    (o o o o o o k k k s s k s s k k o o o o k o o)
+    (o o o o o o o o k k k k k k o o o o o o o o o)
+  ),
+
+  vincent: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o k k k k k k o o o o o o o o o)
+    (o o o o o o o k k k k f k k k k o o o o o o o)
+    (o o o o o k k k k k f k k f k k k o o o o o o)
+    (o o o o k k k k k k f f f k k k k k o o o o o)
+    (o o o k k k k k k k k k k k k k k k o o o o o)
+    (o o k k k k k k k k k k k k k k k k o o o o o)
+    (o o k k k k k e k k k e e e e k k k o o o o o)
+    (o o k k k k r r k k e r r r e e k k o o o o o)
+    (o o k k k r r k k e r r r r r e k k o o o o o)
+    (o o k k k r r k e r r r r r r e k k o o o o o)
+    (o o k k k r r e r r r r r r r e k t k o o o o)
+    (o o k k k w r w t t t r w w t t k t k o o o o)
+    (o o k k k w r k t t t k r w t t k t k o o o o)
+    (o k k k k w r k t t t k r w t t k k o o o o o)
+    (o k k k k t t t t t t t t t t t k k o o o o o)
+    (o k k k k t t t t t t t t t t k k k o o o o o)
+    (k k k k k k k k k k k k k k k k k o o o o o o)
+    (k k k k r r r r e w w r r r e k k o o o o o o)
+    (k k k k r r r e e f f r r r r e k o o o o o o)
+    (k k k r r r e f f f f f f r r e k o o o o o o)
+    (o o k w r e f w w f f w w f r e k o o o o o o)
+    (o k w w k f f f f f f f f f k e t t k o o o o)
+    (o k w w k f f f f f f f f f k e t t k o o o o)
+    (o k k k k f f f f k f f f f k k k k k o o o o)
+    (o o k r r k f f f k f f f k e e k o o o o o o)
+    (o k r r k w w f f k f f w w k e e k o o o o o)
+    (o k k k k k k k k k k k k k k k k k o o o o o)
+  ),
+
+  tifa: (
+    (o o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o k k k k k k k k o o o o o o o o)
+    (o o o o o o o k k k k k k k k k k k k o o o o o o)
+    (o o o o o o k k k k k k k k k k k k k k o o o o o)
+    (o o o o o k k k k k k k k k k k k k k k k o o o o)
+    (o o o o k k k k k k k k k k k k k k k k k o o o o)
+    (o o o o k k k k k k k k k k k k k k k k k o o o o)
+    (o o o k k k k k k t t k k k k t k k k k k k o o o)
+    (o o o k k k k k t t t t t t k t t k k k k k o o o)
+    (o o o k k k k t t k k t t t t k k t k k k k o o o)
+    (o o o k k k k t k f f t t t t f f k t k k k o o o)
+    (o o o k k k k t f s w t t t t s w f t k k k o o o)
+    (o o o k k k k t w s k t t t t k s w t k k k o o o)
+    (o o o k k k k t w s k t t t t k s w t k k k o o o)
+    (o o o k k k k t t t t t t t t t t t t k k k o o o)
+    (o o o k k k k k t t t t t t t t t t k k k k o o o)
+    (o o o k k k k k k k k k k k k k k k k k k k o o o)
+    (o o o k k k k k t k f w w w w f k t k k k k o o o)
+    (o o o k k k k t t k f w w w w f k t t k k k o o o)
+    (o o o o k k k k k k f w w w w f k k k k k k o o o)
+    (o o o o k s s k k t k t t t t k t k s s k o o o o)
+    (o o o o k s t k k k k k k k k k k k t s k o o o o)
+    (o o o o o k k k k k k k k k k k k k k k o o o o o)
+    (o o o o o o o k t t t t k t t t t k o o o o o o o)
+    (o o o o o o o k s s s s k s s s s k o o o o o o o)
+    (o o o o o o o k k k k k k k k k k k o o o o o o o)
+  ),
+
+  barret: (
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o k k k k k k k k k k k o o o o o o o)
+    (o o o o o k k k k k k k k k k k k k o o o o o o)
+    (o o o o o k k k k k k k k k k k k k o o o o o o)
+    (o o o o k k s s s s s s s s s s s k k o o o o o)
+    (o o o o k k s s s s s s s s s s s k k o o o o o)
+    (o o o k k s s s s s s s s s s s s s k k o o o o)
+    (o o o k k s k k s s s s s s s k k s k k o o o o)
+    (o o o k k s s s k k s s s k k s s s k k o o o o)
+    (o o k k k s s s f f s s s f f s s s k k k o o o)
+    (o o k k k s s f k w s s s k w f s s k k k o o o)
+    (o o k k k s s w k k s s s k k w s s k k k o o o)
+    (o o o k k k s w k k s s s k k w s k k k o o o o)
+    (o o o o k k k s s s k k k s s s k k k o o o o o)
+    (o o o k k k k k k k s s s k k k k k k k o o o o)
+    (o o k k k s k k k k k k k k k k k s k k k o o o)
+    (o k k s s s p w w s s s s s w w p s s s k k k o)
+    (o k f f k p w w w s s s s s w w w p k f f f f k)
+    (o k f f k p w w w f f f f f w w w p k f f f k o)
+    (o k k k k p w w w f w w w f w w w p k f f f k o)
+    (k k k k k k k k k k k k k k k k k k k f f f k o)
+    (k k k k k k k k k k k k k k k k k k k k k k o o)
+    (k k k k k k k k k k k k k k k k k k k k o o o o)
+    (o k k k k k k k k k k k k k k k k k k k o o o o)
+    (o o o o k k k k k k k k k k k k k o o o o o o o)
+    (o o o o k k k k k o o o k k k k k o o o o o o o)
+  ),
+
+  cactuar: (
+    (o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o o o o o o o o o o o o o o o o o o o o o o)
+    (o o o k o o o o o o o o o o o o o o o o o o o o)
+    (o k o o k o o o o o o o o o o o o o o o o o o o)
+    (o o k o k k k o o o o o o o o o o o o o o o o o)
+    (k o o k v z z k o o o o o o o k o o o o o o o o)
+    (o k k v v v z z k o o o o o k x k o o o o o o o)
+    (o o k z v v v k z k o o o k z z z k o o o o o o)
+    (o o k x z v v v k z k o k z z x z z k o o o o o)
+    (o o o k z k v v v z z k z z x k x z z k o o o o)
+    (o o o o k z k v k v z z z x k o k x z k o o o o)
+    (o o o o o k z z v k v z x k o o o k k o o o o o)
+    (o o o o o o k z z v v v z x k o o o o o o o o o)
+    (o o k k o o o k z z v v v z x k o o o o o o o o)
+    (o k z x k o k x z x z v v z z x k o o o k k o o)
+    (o k x z x k x z x k x x x k x z x k o k x z k o)
+    (o o k x z x z x k o k k k v z z z k k x z v k o)
+    (o o o k x z x k o o k v z z z z x x z z v k o o)
+    (o o o o k x k o o k v z z z x k x v v v k o o o)
+    (o o o o o k o o o k z z x k k k k k k k o o o o)
+    (o o o o o o o o o k z x k o o o o o o o o o o o)
+    (o o o o o o o o o k z x k o o o o o o o o o o o)
+    (o o o o o o o o o k z x k o o o o o o o o o o o)
+    (o o o o o o o o o k x x k o o o o o o o o o o o)
+    (o o o o o o o o o o k k o o o o o o o o o o o o)
+  )
+);
+
+$cardback: (
+  (r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r)
+  (r o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o r)
+  (r o r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r o r)
+  (r o r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r o r)
+  (r o r r o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o r r o r)
+  (r o r r o o o r r r r r r r r r r r r r r o o r r r r r r r r r r r r r r o o o r r o r)
+  (r o r r o o o o r r r r r r r r r r r r r o o r r r r r r r r r r r r r o o o o r r o r)
+  (r o r r o r o o o r o r o r o r o r o r o o o o r o r o r o r o r o r o o o r o r r o r)
+  (r o r r o r r o o o r o r o r o r o r o r o o r o r o r o r o r o r o o o r r o r r o r)
+  (r o r r o r r r o o o r o r o r o r o r o o o o r o r o r o r o r o o o r r r o r r o r)
+  (r o r r o r r o r o o o r r r r r r r r r o o r r r r r r r r r o o o r o r r o r r o r)
+  (r o r r o r r r o r o o o o o o o o o o o o o o o o o o o o o o o o r o r r r o r r o r)
+  (r o r r o r r o r o r o o o r r r r r r r o o r r r r r r r o o o r o r o r r o r r o r)
+  (r o r r o r r r o r r o o o o o o o o o o o o o o o o o o o o o o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o r o o o o o o r o r o r o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o o o o o o r r o o o o o o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o o o o o o r r o o o o o o o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o o r r o o r o o o r r o o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o o r r r r r r o o r o o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o r o o o o o o o o o o r o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o o o o o o o o o o r o o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o r o o o o o o o o o o r o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o o o o o o o o o o r o o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o r o r r o o o o r r o r o o o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r r r o o r r o o r r o o r r r o r o r o r o r r o r r o r)
+  (r o r r o o o o o o o o o o r o r o o o r o o r o o o r o r o o o o o o o o o o r r o r)
+  (r o r r o o o o o o o o o o r o r o o o o r r o o o o r o r o o o o o o o o o o r r o r)
+  (r o r r o r r r o r r o r o r o o r o o o r r o o o r o o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o o o o o o o o o o r o r o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o r o o o o o o o o o o o o r o o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o o r o r o o o o o o o o r o r o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o r o r o o o o o o o o r o r o o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r r o o r r r r o o r r o o o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o o r o o o r r o o o r o o r o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r r r r r r r r r r r r o r o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o r o o o o o o o o o o o o o o o o o o r o r r o r r r o r r o r)
+  (r o r r o r r o r o r o r o r o r o r o r o o r o r o r o r o r o r o r o r r o r r o r)
+  (r o r r o r r r o r r o o o o o o o o o o o o o o o o o o o o o o r r o r r r o r r o r)
+  (r o r r o r r o r o r o o o r r r r r r r o o r r r r r r r o o o r o r o r r o r r o r)
+  (r o r r o r r r o r o o o o o o o o o o o o o o o o o o o o o o o o r o r r r o r r o r)
+  (r o r r o r r o r o o o r r r r r r r r r o o r r r r r r r r r o o o r o r r o r r o r)
+  (r o r r o r r r o o o r o r o r o r o r o o o o r o r o r o r o r o o o r r r o r r o r)
+  (r o r r o r r o o o r o r o r o r o r o r o o r o r o r o r o r o r o o o r r o r r o r)
+  (r o r r o r o o o r o r o r o r o r o r o o o o r o r o r o r o r o r o o o r o r r o r)
+  (r o r r o o o o r r r r r r r r r r r r r o o r r r r r r r r r r r r r o o o o r r o r)
+  (r o r r o o o r r r r r r r r r r r r r r o o r r r r r r r r r r r r r r o o o r r o r)
+  (r o r r o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o r r o r)
+  (r o r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r o r)
+  (r o r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r o r)
+  (r o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o r)
+  (r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r r)
+);
+// Function to read the matrix and pixelize it!
+@function pixelize($matrix, $size){
+    $l: length($matrix); // length of the entire
+    $sh: ''; // shadows list
+    $i: $l; // length of the line
+
+    // read through the length of the matrix and decide on the box shadow color and position
+    @for $i from 1 through $l{
+      $row: nth($matrix,$i); //
+
+      @for $j from 1 through length($row){
+          $item: nth($row,$j);
+
+          @if map-has-key($pixel-color-map, $item) {
+            $sh:  $sh + ($j*$size) + ' ' + ($i*$size) + ' ' + map-get($pixel-color-map, $item);
+          } @else {
+            @warn 'there is no color specified in "$pixel-color-map" for: "#{$item}"';
+          }
+
+        @if not ($j == length($row) and $i == $l) {
+          $sh: $sh + ',';
+        }
+      }
+    }
+
+    @return unquote($sh);
+}
+
+// Mixin to style each item
+@mixin style-item($matrix, $size){
+  &:after{
+    content: '';
+
+    // position everything from the top left corner
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: $size;
+    height: $size;
+
+    // this is where we make the stitch
+    box-shadow: pixelize($matrix,$size);
+  }
+}
+
+// Forked so I can try hash method
+// TODO Shuffle the cards
+$cards: 6 3 10 8 1 5 2 4 7 6 8 1 9 2 3 4 5 9 7 10;
+
+@keyframes flipCardFront {
+  0% {
+    transform: rotateY(180deg);
+  }
+
+  50% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes flipCardBack {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes randomizeCards {
+  @for $i from 0 through 100 {
+    #{$i}% {
+      order: #{random(1000)};
+    }
+  }
+}
+
+
+html, body {
   height: 100%;
-  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+form {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
   margin: 0;
   padding: 0;
-  cursor: pointer;
+  max-width: 980px;
+  margin: 20px auto 0;
+  justify-content: center;
+
+  > li {
+    position: relative;
+  }
 }
-canvas {
-  border: 1px soild black;
+
+.cardpair-hash, .cardpair-checkbox, .card-hashtarget, .card-misstarget {
+  display: none;
 }
-h1 {
-  display: inline-block;
-  padding: .3em;
-  font-family: 'Megrim', cursive;
+
+.card {
+  width: 150px;
+  height: 170px;
+  margin: 10px;
+}
+
+.card-pair-link, .card-pair-miss {
+  z-index: -1;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  transition: transform 1s;
+  padding-top: 20px;
+  font-size: 100px;
+  text-align: center;
+  background: #fff;
+}
+$i: 0;
+@each $key, $value in $pixel-art {
+   $i: $i + 1;
+  .cardpair#{$i} .card-front {
+    @include style-item($value, $pixel-size);
+  }
+}
+
+.card-pair-link, .card-front, .card-back, .card-pair-miss {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  user-select: none;
-  transform: translate(-50%,-50%);
-  color: rgba(255,255,255,.68);
-  border: .075em solid rgba(255,255,255,.1);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.card-front, .card-back {
+  border-radius: 10px;
+  box-shadow: 1px 0 9px 0px rgba(0, 0, 0, 0.5);
+  border: 6px solid #fff;
+  transition: transform 1s;
+  backface-visibility: hidden;
+  transition-delay: 1s;
+}
+
+.card-back {
+  @include style-item($cardback, 3px);
+}
+
+@for $i from 0 through (length($cards)) {
+  #randomize ~ .card-grid .card#{$i} {
+    animation-play-state: paused;
+    animation-name: randomizeCards;
+    animation-duration: 2s;
+    animation-delay: #{'0.' + random(100)}s;
+    animation-iteration-count: infinite;
+  }
+   #randomize:checked ~ .card-grid .card#{$i} {
+    order: #{i};
+    animation-play-state: running;
+  }
+}
+
+@for $i from 0 through (length($cards)) {
+  :target#cardhash#{$i} ~ .card-grid .card#{$i} .card-back{
+    transform: rotateY(180deg);
+    transition-delay: 0s;
+  }
+  :target#cardhash#{$i} ~ .card-grid .card#{$i} .card-front {
+    transform: rotateY(0deg);
+    transition-delay: 0s;
+  }
+
+  :target#misshash#{$i} ~ .card-grid .card#{$i} .card-back{
+    animation-duration: 2s;
+    animation-name: flipCardBack;
+  }
+  :target#misshash#{$i} ~ .card-grid .card#{$i} .card-front {
+    animation-duration: 2s;
+    animation-name: flipCardFront;
+  }
+  :target#cardhash#{$i} ~ .card-grid .card#{$i} .card-pair-link {
+    display: none;
+  }
+}
+
+.cardpair-checkbox ~ .card-grid .card-pair-miss {
+  z-index: -1;
+}
+
+.cardpair-checkbox:focus .card-pair-miss {
+  border: 1px solid blue;
+}
+
+@for $i from 1 through (length($cards)) {
+  $card: nth($cards, $i);
+  :target.card-hashtarget ~ .card-grid .card-pair-miss{
+    z-index: 2;
+  }
+
+  :target#cardhash#{$i - 1} ~ .card-grid .cardpair#{$card} .card-pair-link {
+    z-index: 2;
+  }
+
+  :target#cardhash#{$i - 1} ~ .card-grid .cardpair#{$card} .card-pair-miss {
+    z-index: -1;
+  }
+}
+
+@for $i from 0 through (length($cards) / 2) {
+  :target#cardpairHash#{$i} ~.card-grid .cardpair#{$i} {
+    z-index: 6;
+  }
+  #cardpair#{$i}:checked ~.card-grid .cardpair#{$i}, :target#cardpairHash#{$i} ~.card-grid .cardpair#{$i} {
+    .card-front {
+      transform: rotateY(0deg);
+      transition-delay: 0s;
+    }
+
+     .card-back {
+      transform: rotateY(180deg);
+       transition-delay: 0s;
+    }
+
+    .card-pair-link, .card-back {
+      pointer-events: none;
+    }
+  }
+}
+
+.card:focus .card-back {
+  transform: rotateY(180deg);
+}
+
+button {
+  position: relative;
+  z-index: 100;
+}
+
+.restart {
+  position: relative;
+  z-index: 100;
+}
+
+.card-pair-label {
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: none;
+  transition: opacity 1s;
+}
+
+@for $i from 0 through (length($cards) / 2) {
+   :target#cardpairHash#{$i} ~ .card-pair-label[for=cardpair#{$i}] {
+    display: block;
+
+  }
+
+   #cardpair#{$i}:checked ~ :target#cardpairHash#{$i} ~ .card-pair-label[for=cardpair#{$i}] {
+    display: none;
+
+  }
+}
+
+#randomize {
+  opacity: 0;
+}
+
+.start-game {
+  background-color: rgba(0,0,0,0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: none;
+}
+#randomize:checked + .start-game {
+  display: flex;
+  justify-content: center;
+}
+
+.start-title {
+  color: #fff;
+  font-size: 50px;
+  margin-top: 300px;
 }
