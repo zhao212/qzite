@@ -25,7 +25,7 @@ SECRET_KEY = 'tv*ypk&9=jhgvgseb(i(ca+)%m6!3w@9^y-0uv7&4kkezi3-rg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.qzite.club']
+ALLOWED_HOSTS = ['www.qzite.club','127.0.0.1']
 
 
 # Application definition
