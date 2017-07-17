@@ -8,6 +8,7 @@
 .bigbrand{
   font-family: 'Fascinate', cursive;
   font-size: 40px;
+  style="color: #ffffff;"
 }
 
 .res1 {
@@ -34,7 +35,7 @@
 }
 
 .posttitle{
-  font-family: 'Righteous',cursive;
+  font-family: 'Roboto Slab', serif;
   font-size: 3em;
   text-align: center;
   color: #ffffff;
