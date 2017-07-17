@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html>
+<html style="height: 200%;">
   <head>
     <meta charset="utf-8">
     <title>QZite</title>
@@ -13,13 +13,16 @@
     <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
     {# Custom CSS#}
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/blog.css' %}">
     {# Fonts#}
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Righteous" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fascinate" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
   </head>
+  <div  id="content">
   <body class="loader">
+
     <nav id="nav-2">
     <!-- <nav class="navbar navbar-default techfont custom-navbar"> -->
     <!-- <div class="container"> -->
@@ -27,10 +30,11 @@
 
       <!-- <ul class="nav navbar-nav">
         <li> -->
-          <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'post_list' %}">QZite</a>
+          <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'index' %}">QZite</a>
         <!-- </li>
         <li> -->
           <a class="link-2 techfont" href="{% url 'about'%}">About</a>
+          <a class="link-2 techfont" href="{% url 'post_list'%}">Blogs</a>
           <a class="link-2 techfont" href="{% url 'project_list'%}">Projects</a>
           <a class="link-2 techfont" href="{% url 'apps_list'%}">Apps</a>
         <!-- </li>
@@ -82,5 +86,7 @@
       </div>
 
     </div>
+
   </body>
+  </div>
 </html>
