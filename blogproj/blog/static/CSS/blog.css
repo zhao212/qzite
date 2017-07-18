@@ -147,8 +147,6 @@ background-image: -o-linear-gradient(top, #f94f16, transparent);
 background-image: linear-gradient(to bottom, #f94f16, transparent);
 background-repeat:no-repeat;
 background-size:100% 300px;
-    /*background-size: cover;*/
-
 }
 #content{
     background-color: transparent;
@@ -156,4 +154,145 @@ background-size:100% 300px;
   /*height:100%;*/
   background-size:50px 50px;
 
+}
+.area {
+  text-align: center;
+  font-size: 6.5em;
+  color: #fff;
+  letter-spacing: -7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: blur .75s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+}
+
+@keyframes blur {
+  from {
+    text-shadow:0px 0px 10px #fff,
+      0px 0px 10px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #7B96B8,
+      0px 0px 150px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px -10px 100px #7B96B8,
+      0px -10px 100px #7B96B8;
+  }
+}
+
+.clock {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border-radius : 100%;
+  margin: 0 auto;
+  margin-top: 50vh;
+
+  background-color: #fefffd;
+
+  transform: translateY(-50%);
+  box-shadow : 0 0 0 1.3rem #f94f16;
+  background: linear-gradient(30deg, transparent, transparent 49%, #cfd1d1 49%, #cfd1d1 51%, transparent 51%, transparent 100%), linear-gradient(60deg, transparent, transparent 49%, #cfd1d1 49%, #cfd1d1 51%, transparent 51%, transparent 100%), linear-gradient(90deg, transparent, transparent 48.5%, #000000 48.5%, #000000 51.5%, transparent 51.5%, transparent 100%), linear-gradient(120deg, transparent, transparent 49%, #cfd1d1 49%, #cfd1d1 51%, transparent 51%, transparent 100%), linear-gradient(150deg, transparent, transparent 49%, #cfd1d1 49%, #cfd1d1 51%, transparent 51%, transparent 100%), linear-gradient(180deg, #fefffd, #fefffd 48.5%, #000000 48.5%, #000000 51.5%, #fefffd 51.5%, #fefffd 100%);
+}
+
+/* Clock center */
+.clock::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+
+  background-color: #000000;
+
+  transform: translateY(-50%) translateX(-50%);
+  box-shadow: 0 0 0 8.5rem #fefffd;
+}
+
+/* Flat shadow */
+.clock::before {
+  content: '';
+  position: absolute;
+  left: -1.3rem;
+  top: -1.3rem;
+  z-index: 1001;
+
+  width: calc(100% + 2.6rem);
+  height: calc(100% + 2.6rem);
+
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 50%, #ed9231);
+
+  transform: rotate(60deg) translateX(50%);
+}
+
+
+/* Aiguilles des secondes, heures, minutes */
+.hand {
+  position: absolute;
+  top: 50%;
+  z-index: 1000;
+
+  transform-origin: center top;
+}
+
+.hour {
+  left: 48.75%;
+
+  width: 2.5%;
+  height: 20%;
+
+  background-color: #000000;
+
+  -webkit-animation : rotate 43200s infinite linear;
+  animation: rotate 43200s infinite linear;
+}
+
+.minute {
+  left: 49.5%;
+
+  width: 1%;
+  height: 40%;
+
+  background-color: #000000;
+
+  -webkit-animation : rotate 3600s infinite linear;
+  animation: rotate 3600s infinite linear;
+
+}
+
+.second {
+  left: 49.35%;
+
+  width: 1.3%;
+  height: 30%;
+
+  background-color: #FF0000;
+  background-image: linear-gradient(#000000, #000000 8.5%, #FF0000 8.5%, #FF0000 100%);
+
+  -webkit-animation : rotate 60s infinite steps(60);
+  animation: rotate 60s infinite steps(60);
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
