@@ -1,13 +1,14 @@
 from django.conf.urls import url
-from blog import views
-
+from . import views
+app_name = 'blog'
 urlpatterns = [
-    url(r'^$',views.IndexView.as_view(),name = 'index'),
+    # url(r'^$',views.IndexView.as_view(),name = 'index'),
     url(r'^blog/$',views.PostListView.as_view(),name = 'post_list'),
-    url(r'^about/$', views.AboutView.as_view(),name='about'),
+    url(r"about/$", views.AboutView.as_view(),name='about'),
     url(r'^apps/$', views.AppView.as_view(),name='apps_list'),
-    url(r'^project/$',views.ProjectListView.as_view(),name = 'project_list'),
-    url(r'^post/(?P<pk>\d+)$',views.PostDetailView.as_view(),name='post_detail'),
+    # url(r'^apps/resume_form$', views.ResumeFormView.as_view(),name='resume_form'),
+    url(r'^project/$',views.ProjectListView.as_view(),name = 'myproject_list'),
+    url(r"post/(?P<pk>\d+)$",views.PostDetailView.as_view(),name='post_detail'),
     url(r'^post/new/$',views.CreatePostView.as_view(),name='post_new'),
     url(r'^post/(?P<pk>\d+)/edit/$',views.PostUpdateView.as_view(),name = 'post_edit'),
     url(r'^post/(?P<pk>\d+)/remove/$',views.PostDeleteView.as_view(),name = 'post_remove'),

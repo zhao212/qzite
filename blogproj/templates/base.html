@@ -30,20 +30,21 @@
 <body  >
   <div id = "content">
     <nav id="nav-2" class="loader">
-      <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'index' %}">QZite</a>
-      <a class="link-2 techfont" href="{% url 'about'%}">About</a>
-      <a class="link-2 techfont" href="{% url 'post_list'%}">Blogs</a>
-      <a class="link-2 techfont" href="{% url 'project_list'%}">Projects</a>
-      <a class="link-2 techfont" href="{% url 'apps_list'%}">Apps</a>
+      <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'home' %}">QZite</a>
+      <a class="link-2 techfont" href="{% url 'blog:about'%}">About</a>
+      <a class="link-2 techfont" href="{% url 'blog:post_list'%}">Blogs</a>
+      <a class="link-2 techfont" href="{% url 'blog:myproject_list'%}">Projects</a>
+      <a class="link-2 techfont" href="{% url 'blog:apps_list'%}">Apps</a>
       <a class="link-2 techfont" href="https://github.com/zhao212">Github</a>
       <a class="link-2 techfont" href="https://www.linkedin.com/in/qiyue-zhao/">LinkedIn</a>
     {% if user.is_authenticated %}
-    <a class="link-2 techfont" href="{% url 'post_new' %}" >New Post</a>
-    <a class="link-2 techfont" href="{% url 'post_draft_list' %}">Drafts</a>
-    <a class="link-2 techfont" href="{% url 'logout' %}" >Log out</a>
+    <a class="link-2 techfont" href="{% url 'blog:post_new' %}" >New Post</a>
+    <a class="link-2 techfont" href="{% url 'blog:post_draft_list' %}">Drafts</a>
+    <a class="link-2 techfont" href="{% url 'accounts:logout' %}" >Log out</a>
     <a class="link-1 navbar-right">Welcome: {{ user.username }}</a>
     {% else %}
-    <a class='link-1 navbar-right' href="{% url 'login' %}" ><span class="glyphicon glyphicon-user"></span></a>
+    <a href="{% url 'accounts:login' %}" class="link-2 techfont">Log in</a>
+    <a href="{% url 'accounts:signup' %}" class="link-2 techfont">Sign up</a>
     {% endif %}
   </nav>
 

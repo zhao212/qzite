@@ -5,18 +5,25 @@ class PostForm(forms.ModelForm):
 
     class Meta():
         model = Post
-        fields = ('author','title','text')
+        fields = ('title','text')
 
         widgets = {
+            # 'author':forms.HiddenInput(initial = user),
             'title':forms.TextInput(attrs = {'class':'textinputclass'}),
             'text':forms.Textarea(attrs = {'class':'editable medium-editor-textarea postcontent'})
         }
+
+        # def __init__(self, *args, **kwargs):
+        #     user = kwargs.pop("user", None)
+        #     super().__init__(*args, **kwargs)
+
+
 class CommentForm(forms.ModelForm):
     class Meta():
         model = Comment
-        fields = ('author','text')
+        fields = ('text','author')
 
         widgets = {
-            'author':forms.TextInput(attrs = {'class':'textinputclass'}),
+            'author':forms.HiddenInput(attrs = {'class':'textinputclass'}),
             'text':forms.Textarea(attrs = {'class':'editable medium-editor-textarea postcontent'})
         }
