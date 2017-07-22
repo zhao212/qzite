@@ -154,6 +154,7 @@ background-image: -o-linear-gradient(top, #f94f16, transparent);
 background-image: linear-gradient(to bottom, #f94f16, transparent);
 background-repeat:no-repeat;
 background-size:100% 300px;
+
 }
 #content{
     background-color: transparent;
