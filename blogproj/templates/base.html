@@ -21,15 +21,15 @@
   <link href="https://fonts.googleapis.com/css?family=Fascinate" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
-  <script src="{% static '.js/index.js' %}">
-
   </script>
 
 </head>
 
 <body  >
   <div id = "content">
+
     <nav id="nav-2" class="loader">
+      <!-- <img href="{% url 'home' %}" class="link-1 navbar-brand bigbrand" style="width:100px;height:28px;" src="{% static 'img/logo.png' %}"> -->
       <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'home' %}">QZite</a>
       <a class="link-2 techfont" href="{% url 'blog:about'%}">About</a>
       <a class="link-2 techfont" href="{% url 'gallery'%}">Gallery</a>

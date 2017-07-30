@@ -5,7 +5,7 @@ class ResBasicForm(forms.ModelForm):
 
     class Meta():
         model = res_basic
-        fields = ('last_name','first_name','birthday','email','phone','address')
+        fields = ('last_name','first_name','birthday','email','phone','address','title','city','state','zipcode')
 
         widgets = {
             # 'author':forms.HiddenInput(initial = user),
@@ -15,6 +15,10 @@ class ResBasicForm(forms.ModelForm):
             'email':forms.EmailInput(attrs = {'class':'textinputclass'}),
             'phone':forms.TextInput(attrs = {'class':'textinputclass'}),
             'address':forms.TextInput(attrs = {'class':'textinputclass'}),
+            'city':forms.TextInput(attrs = {'class':'textinputclass'}),
+            'state':forms.TextInput(attrs = {'class':'textinputclass'}),
+            'zipcode':forms.TextInput(attrs = {'class':'textinputclass'}),
+            'title':forms.TextInput(attrs = {'class':'textinputclass'}),
                    }
 
 class ResEduForm(forms.ModelForm):

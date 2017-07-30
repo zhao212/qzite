@@ -33,6 +33,21 @@ class ResumeListView(LoginRequiredMixin,ListView):
         # And so on for more models
         return context
 
+class WebResumeListView(LoginRequiredMixin,ListView):
+    template_name = 'myresume/webcv.html'
+    context_object_name = 'basic_info_list'
+    queryset = res_basic.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super(WebResumeListView, self).get_context_data(**kwargs)
+        context['basic_info_list'] = res_basic.objects.filter(user=self.request.user)
+        context['education_list'] = res_education.objects.filter(user=self.request.user)
+        context['project_list'] = res_project.objects.filter(user=self.request.user)
+        context['work_list'] = res_work.objects.filter(user=self.request.user)
+        context['skill_list'] = res_skill.objects.filter(user=self.request.user)
+        context['award_list'] = res_award.objects.filter(user=self.request.user)
+        # And so on for more models
+        return context
+
 class BasicInfoUpdateView(LoginRequiredMixin,UpdateView):
     login_url = '/login/'
     redirected_field_name = 'myresume/my_resume.html'

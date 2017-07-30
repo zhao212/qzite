@@ -4,6 +4,7 @@ app_name = 'myresume'
 urlpatterns = [
 # url(r'^$',views.IndexView.as_view(),name = 'index'),
 url(r'^my_resume/$',views.ResumeListView.as_view(),name = 'resumepage'),
+url(r'^web_resume/$',views.WebResumeListView.as_view(),name = 'webresumepage'),
 url(r'^my_resume/(?P<pk>\d+)/basic_edit/$',views.BasicInfoUpdateView.as_view(),name = 'basic_edit'),
 url(r'^my_resume/basic_new/$',views.CreateBasicInfoView.as_view(),name='basic_new'),
 url(r'^my_resume/(?P<pk>\d+)/edu_edit/$',views.EduUpdateView.as_view(),name = 'edu_edit'),

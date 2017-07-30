@@ -304,3 +304,9 @@ background-size:100% 300px;
     transform: rotate(360deg);
   }
 }
+
+.logo1{
+  z-index: 9999;
+  width:150px;
+  height:42px;
+}
