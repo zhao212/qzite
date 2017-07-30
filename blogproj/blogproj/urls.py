@@ -22,6 +22,7 @@ urlpatterns = [
     url(r"^gallery/$", views.GalleryPage.as_view(), name="gallery"),
     url(r'^admin/', admin.site.urls),
     url(r"^blog/",include('blog.urls',namespace = "blog")),
+    url(r"^resume/",include('myresume.urls',namespace = "myresume")),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
     url(r"^accounts/", include("django.contrib.auth.urls")),
     url(r"^test/$", views.TestPage.as_view(), name="test"),
