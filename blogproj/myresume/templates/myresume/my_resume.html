@@ -13,6 +13,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
   <link rel="stylesheet" href="{% static 'CSS/myresume.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Spectral" rel="stylesheet">
   <script type="text/javascript" src="{% static 'JS/jquery-3.2.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'JS/myresume.js' %}"></script>
 
@@ -25,14 +26,18 @@
           <li class="nav-button-products"><a href="#">Generate PDF</a></li>
      </ul>
 </nav>
-  <div class="centerstage">
+  <div id="wrap">
 
     <div>
-      <h1>Basic Information</h1>
+      <h1 class="res_1">Personal Information
+        {% if basic_info_list.count == 0%}
+        <a class="btn btn-primary right" href="{% url 'myresume:basic_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
+      </h1>
       {% for info in basic_info_list %}
-      <div class="post">
-        <h2>Full name: {{ info.full_name }}</h2>
-        <div class="date">
+      <div>
+        <h2 class="res_2">{{ info.full_name }}</h2>
+        <div class="res_3">
           <p>Birth: {{ info.birthday|date:"D M Y"}}</p>
           <p>E-mail: {{info.email}} Phone: {{info.phone}}</p>
           <p>Address: {{info.address}}</p>
@@ -42,32 +47,28 @@
       <a class="btn btn-primary" href="{% url 'myresume:basic_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
       {% endfor %}
     </div>
-    {% if basic_info_list.count == 0%}
-    <a class="btn btn-primary" href="{% url 'myresume:basic_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
-    {% endif %}
+
     <div>
-      <h1>Education Experience</h1>
+      <h1 class="res_1">Education Experience<a class="btn btn-primary right" href="{% url 'myresume:edu_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
       {% for info in education_list %}
-      <div class="cf">
-        <h2 class="res2">{{ info.education_name }}</h2>
-        <div class="date">
+        <h2 class="res_2">{{ info.education_name }}<p class="right">{{ info.start_date|date:"M Y"}} - {{ info.end_date|date:"M Y"}}</p></h2>
+        <div class="res_3">
           <p>Major: {{info.major}} Degree: {{info.degree}}</p>
-          <p>Start Date: {{ info.start_date|date:"D M Y"}} End Date: {{ info.end_date|date:"D M Y"}}</p>
+
         </div>
-      </div>
       <a class="btn btn-primary" href="{% url 'myresume:edu_edit' pk=info.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       <a class="btn btn-primary" href="{% url 'myresume:edu_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
       {% endfor %}
     </div>
-    <a class="btn btn-primary" href="{% url 'myresume:edu_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+
 
     <div>
-      <h1>Project Experience</h1>
+      <h1 class="res_1">Project Experience<a class="btn btn-primary right" href="{% url 'myresume:pro_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
       {% for info in project_list %}
-      <div class="post">
-        <h2>{{ info.project_name }}</h2>
-        <div class="date">
-          <p>Start Date: {{ info.start_date|date:"D M Y"}} End Date: {{ info.end_date|date:"D M Y"}}</p>
+      <div>
+        <h2 class="res_2">{{ info.project_name }}<p class="right">{{ info.start_date|date:"M Y"}} - {{ info.end_date|date:"M Y"}}</p></h2>
+        <div class="res_3">
+
           <p>{{info.description}}</p>
         </div>
       </div>
@@ -75,16 +76,16 @@
       <a class="btn btn-primary" href="{% url 'myresume:pro_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
       {% endfor %}
     </div>
-    <a class="btn btn-primary" href="{% url 'myresume:pro_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+
 
     <div>
-      <h1>Work Experience</h1>
+      <h1 class="res_1">Work Experience<a class="btn btn-primary right" href="{% url 'myresume:work_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
       {% for info in work_list %}
-      <div class="post">
-        <h2>{{ info.work_title }}</h2>
-        <div class="date">
+      <div>
+        <h2 class="res_2">{{ info.work_title }} <p class="right">{{ info.start_date|date:"M Y"}} - {{ info.end_date|date:"M Y"}}</p></h2>
+        <div class="res_3">
           <p>{{info.company_name}}</p>
-          <p>Start Date: {{ info.start_date|date:"D M Y"}} End Date: {{ info.end_date|date:"D M Y"}}</p>
+
           <p>{{info.description}}</p>
         </div>
       </div>
@@ -92,13 +93,13 @@
       <a class="btn btn-primary" href="{% url 'myresume:work_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
       {% endfor %}
     </div>
-    <a class="btn btn-primary" href="{% url 'myresume:work_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+
 
     <div>
-      <h1>Skills</h1>
+      <h1 class="res_1">Skills<a class="btn btn-primary right" href="{% url 'myresume:skill_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
       {% for info in skill_list %}
-      <div class="post">
-        <h2 class="res2">{{ info.skill_name }}</h2>
+      <div class="res_2">
+        {{ info.skill_name }}
         <!-- <div class="date">
         <p>Start Date: {{ info.start_date|date:"D M Y"}} End Date: {{ info.end_date|date:"D M Y"}}</p>
       </div> -->
@@ -107,14 +108,14 @@
     <a class="btn btn-primary" href="{% url 'myresume:skill_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
     {% endfor %}
   </div>
-  <a class="btn btn-primary" href="{% url 'myresume:skill_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+
 
   <div>
-    <h1>Awards</h1>
+    <h1 class="res_1">Awards<a class="btn btn-primary right" href="{% url 'myresume:award_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
     {% for info in award_list %}
-    <div class="post">
-      <h2 class="res2">{{ info.award_name }}</h2>
-      <div class="date">
+    <div class="res_2">
+      {{ info.award_name }}
+      <div class="res_3">
         <p>year: {{ info.get_year|date:"Y"}}</p>
       </div>
     </div>
@@ -122,7 +123,7 @@
     <a class="btn btn-primary" href="{% url 'myresume:award_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
     {% endfor %}
   </div>
-  <a class="btn btn-primary" href="{% url 'myresume:award_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+
 
 </div>
 </body>
