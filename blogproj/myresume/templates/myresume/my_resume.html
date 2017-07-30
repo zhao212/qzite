@@ -69,7 +69,7 @@
         <h2 class="res_2">{{ info.project_name }}<p class="right">{{ info.start_date|date:"M Y"}} - {{ info.end_date|date:"M Y"}}</p></h2>
         <div class="res_3">
 
-          <p>{{info.description}}</p>
+          <p>{{info.description|safe|linebreaksbr}}</p>
         </div>
       </div>
       <a class="btn btn-primary" href="{% url 'myresume:pro_edit' pk=info.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -86,7 +86,7 @@
         <div class="res_3">
           <p>{{info.company_name}}</p>
 
-          <p>{{info.description}}</p>
+          <p>{{info.description|safe|linebreaksbr}}</p>
         </div>
       </div>
       <a class="btn btn-primary" href="{% url 'myresume:work_edit' pk=info.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -114,10 +114,7 @@
     <h1 class="res_1">Awards<a class="btn btn-primary right" href="{% url 'myresume:award_new' %}"><span class="glyphicon glyphicon-plus"></span></a></h1>
     {% for info in award_list %}
     <div class="res_2">
-      {{ info.award_name }}
-      <div class="res_3">
-        <p>year: {{ info.get_year|date:"Y"}}</p>
-      </div>
+      {{ info.award_name }}<p class="right">{{ info.get_year|date:"M Y"}}</p>
     </div>
     <a class="btn btn-primary" href="{% url 'myresume:award_edit' pk=info.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
     <a class="btn btn-primary" href="{% url 'myresume:award_remove' pk=info.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
