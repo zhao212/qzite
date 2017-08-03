@@ -6,9 +6,9 @@
 }
 
 .bigbrand{
-  font-family: 'Fascinate', cursive;
-  font-size: 40px;
-  color: #ffffff;
+    float: left;
+    height: 50px;
+    margin-right: 50px;
 }
 
 .res1 {
