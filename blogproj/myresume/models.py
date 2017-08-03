@@ -13,7 +13,7 @@ class res_basic(models.Model):
     address = models.CharField(max_length=300, blank=True, null=True, verbose_name="address")
     city = models.CharField(max_length=50, blank=True, null=True, verbose_name="city")
     state = models.CharField(max_length=50, blank=True, null=True, verbose_name="state")
-    zipcode = models.IntegerField(max_length=10, blank=True, null=True, verbose_name="zipcode")
+    zipcode = models.IntegerField(blank=True, null=True, verbose_name="zipcode")
     title = models.CharField(max_length=300, blank=True, null=True, verbose_name="title")
 
     def full_name(self):

@@ -4,10 +4,10 @@
 <head>
   <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>QZite</title>
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   {# MEDIUM STYLE EDITOR#}
@@ -15,39 +15,77 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
   {# Custom CSS#}
   <link rel="stylesheet" href="{% static 'CSS/blog.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/index.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/blocknav.css' %}">
+
   {# Fonts#}
   <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Righteous" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fascinate" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
-  </script>
-
 </head>
 
-<body  >
-  <div id = "content">
+<body>
+  <!-- <script src="{% static 'JS/jquery-1.11.3.min.js' %}"></script> -->
+  <div >
+    <ul class="menu cf">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'blog:about'%}">About</a></li>
+      <li><a href="{% url 'gallery'%}">Gallery</a></li>
+      <li><a href="{% url 'blog:post_list'%}">Blogs</a>
+        {% if user.is_authenticated %}
+        <ul class="submenu">
+          <li><a href="{% url 'blog:post_new' %}">New Post</a></li>
+          <li><a href="{% url 'blog:post_draft_list' %}">Drafts</a></li>
+        </ul>
+        {% endif %}
 
-    <nav id="nav-2" class="loader">
-      <!-- <img href="{% url 'home' %}" class="link-1 navbar-brand bigbrand" style="width:100px;height:28px;" src="{% static 'img/logo.png' %}"> -->
-      <a class='link-1 navbar-brand bigbrand' font-size = "40px" href="{% url 'home' %}">QZite</a>
-      <a class="link-2 techfont" href="{% url 'blog:about'%}">About</a>
-      <a class="link-2 techfont" href="{% url 'gallery'%}">Gallery</a>
-      <a class="link-2 techfont" href="{% url 'blog:post_list'%}">Blogs</a>
-      <a class="link-2 techfont" href="{% url 'blog:myproject_list'%}">Projects</a>
-      <a class="link-2 techfont" href="{% url 'blog:apps_list'%}">Apps</a>
-      <a class="link-2 techfont" href="https://github.com/zhao212">Github</a>
-      <a class="link-2 techfont" href="https://www.linkedin.com/in/qiyue-zhao/">LinkedIn</a>
+      </li>
+      <li>
+        <a href="#">Apps</a>
+        <ul class="submenu">
+          <li><a href="{% url 'myresume:resumepage'%}">Resume Generator</a></li>
+          <li><a href="{% url 'qrgenerator:generator'%}">QR code Generator</a></li>
+
+        </ul>
+      </li>
+      <li>
+        <a href="#">My Links</a>
+        <ul class="submenu">
+          <li><a href="{% url 'blog:myproject_list'%}">Projects</a></li>
+          <li><a href="https://github.com/zhao212">Github</a></li>
+          <li><a href="https://www.linkedin.com/in/qiyue-zhao/">LinkedIn</a></li>
+        </ul>
+      </li>
+
+
+      {% if user.is_authenticated %}
+
+      <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+      <li><a href="#">Welcome: {{ user.username }}</a></li>
+      {% else %}
+      <li><a href="{% url 'accounts:login' %}">Login</a></li>
+      <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+      {% endif %}
+</ul>
+    <!-- <nav>
+    <a class='navbar-brand bigbrand' font-size = "40px" href="{% url 'home' %}">QZite</a>
+    <a class="techfont" href="{% url 'blog:about'%}">About</a>
+    <a class="techfont" href="{% url 'gallery'%}">Gallery</a>
+    <a class="techfont" href="{% url 'blog:post_list'%}">Blogs</a>
+    <a class="techfont" href="{% url 'blog:myproject_list'%}">Projects</a>
+    <a class="techfont" href="{% url 'blog:apps_list'%}">Apps</a>
+    <a class="techfont" href="https://github.com/zhao212">Github</a>
+    <a class="techfont" href="https://www.linkedin.com/in/qiyue-zhao/">LinkedIn</a>
     {% if user.is_authenticated %}
-    <a class="link-2 techfont" href="{% url 'blog:post_new' %}" >New Post</a>
-    <a class="link-2 techfont" href="{% url 'blog:post_draft_list' %}">Drafts</a>
-    <a class="link-2 techfont" href="{% url 'accounts:logout' %}" >Log out</a>
-    <a class="link-1 navbar-right">Welcome: {{ user.username }}</a>
+    <a class="techfont" href="{% url 'blog:post_new' %}" >New Post</a>
+    <a class="techfont" href="{% url 'blog:post_draft_list' %}">Drafts</a>
+    <a class="techfont" href="{% url 'accounts:logout' %}" >Log out</a>
+    <a class="navbar-right">Welcome: {{ user.username }}</a>
     {% else %}
-    <a href="{% url 'accounts:login' %}" class="link-2 techfont">Log in</a>
-    <a href="{% url 'accounts:signup' %}" class="link-2 techfont">Sign up</a>
+    <a href="{% url 'accounts:login' %}" class="techfont">Log in</a>
+    <a href="{% url 'accounts:signup' %}" class="techfont">Sign up</a>
     {% endif %}
-  </nav>
+  </nav> -->
 
   <div class="container" >
     <div class="row">
@@ -59,6 +97,7 @@
       </div>
     </div>
   </div>
+    <!-- </ul> -->
 </div>
 </body>
 

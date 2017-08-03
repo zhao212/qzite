@@ -3,10 +3,10 @@
 {% block content %}
 
 
-        <h1 class='posttitle loader'>{{ post.title }}</h1>
+        <h1 class='posttitle'>{{ post.title }}</h1>
         <h2 class='res3'>author: {{post.author}}</h2>
         {% if post.published_date %}
-            <div class="date postdate">
+            <div class="date postdate" style="color:#ffffff">
                 {{ post.published_date }}
             </div>
 

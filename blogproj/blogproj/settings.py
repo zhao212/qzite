@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap3',
     'myresume',
+    'webgame1',
+    'qrgenerator',
 ]
 
 MIDDLEWARE = [

@@ -3,10 +3,10 @@
   {% for post in post_draft_list %}
 
     {% if request.user == post.author %}
-      <div class="post">
-          <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+      <div class="post" style="color:#ffffff">
+          <h1><a class="res2" href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
           <p class="date">created: {{ post.created_date|date:'d-m-Y' }} author: {{post.author}}</p>
-
+          
           <!-- <p>{{ post.text|truncatechars:200 }}</p> -->
       </div>
     {% endif%}
