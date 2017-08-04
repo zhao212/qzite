@@ -25,11 +25,11 @@ class ResumeListView(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         context = super(ResumeListView, self).get_context_data(**kwargs)
         context['basic_info_list'] = res_basic.objects.filter(user=self.request.user)
-        context['education_list'] = res_education.objects.filter(user=self.request.user)
-        context['project_list'] = res_project.objects.filter(user=self.request.user)
-        context['work_list'] = res_work.objects.filter(user=self.request.user)
+        context['education_list'] = res_education.objects.filter(user=self.request.user).order_by("-start_date")
+        context['project_list'] = res_project.objects.filter(user=self.request.user).order_by("-start_date")
+        context['work_list'] = res_work.objects.filter(user=self.request.user).order_by("-start_date")
         context['skill_list'] = res_skill.objects.filter(user=self.request.user)
-        context['award_list'] = res_award.objects.filter(user=self.request.user)
+        context['award_list'] = res_award.objects.filter(user=self.request.user).order_by("-get_year")
         # And so on for more models
         return context
 

@@ -148,3 +148,43 @@ li{
 .menu > li:hover .submenu li:nth-child(odd) {
   -webkit-transform: skewX(-25deg) translateX(-15px);
 }
+
+.show-menu {
+	text-decoration: none;
+	text-align: center;
+	display: none;
+  margin-bottom: 20px;
+  z-index: 999;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+input[type=checkbox]:checked ~ .menu{
+    display: block;
+}
+
+@media screen and (max-width : 980px){
+  .menu {
+    display: none;
+    width: 100%;
+  }
+
+  .menu ul{
+    width: 100%;
+    float: none;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    margin: 0;
+  }
+  .menu ul li{
+    margin: 0 auto 0 auto;
+    text-align: center;
+  }
+  .show-menu {
+   display:block;
+ }
+
+}

@@ -52,9 +52,26 @@ formHandler();
 
 generate.onclick = formHandler;
 
-document.body.appendChild(data);
-document.body.appendChild(size);
-document.body.appendChild(checkbox);
-document.body.appendChild(label);
-document.body.appendChild(generate);
-document.body.appendChild(chart);
+var createDiv=document.createElement("div");
+createDiv.style="text-align:center";
+ createDiv.appendChild(data);
+ createDiv.appendChild(document.createElement("br"));
+ createDiv.appendChild(size);
+ createDiv.appendChild(document.createElement("br"));
+ createDiv.appendChild(checkbox);
+ createDiv.appendChild(label);
+ createDiv.appendChild(document.createElement("br"));
+ createDiv.appendChild(generate);
+ createDiv.appendChild(chart);
+ document.body.appendChild(createDiv);
+
+// document.body.appendChild(data);
+// document.write("<br>")
+// document.body.appendChild(size);
+// document.write("<br>")
+// document.body.appendChild(checkbox);
+// document.body.appendChild(label);
+// document.write("<br>")
+// document.body.appendChild(generate);
+//
+// document.body.appendChild(chart);

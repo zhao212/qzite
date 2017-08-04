@@ -27,7 +27,8 @@
 <body>
   <!-- <script src="{% static 'JS/jquery-1.11.3.min.js' %}"></script> -->
   <div >
-
+    <label for="show-menu" class="show-menu">Menu</label>
+<input type="checkbox" id="show-menu" role="button">
     <ul class="menu cf">
       <img class="bigbrand" src="{% static 'img/logo.png'%}" alt="logo">
       <li><a href="{% url 'home' %}">Home</a></li>
@@ -69,25 +70,6 @@
       <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
       {% endif %}
 </ul>
-    <!-- <nav>
-    <a class='navbar-brand bigbrand' font-size = "40px" href="{% url 'home' %}">QZite</a>
-    <a class="techfont" href="{% url 'blog:about'%}">About</a>
-    <a class="techfont" href="{% url 'gallery'%}">Gallery</a>
-    <a class="techfont" href="{% url 'blog:post_list'%}">Blogs</a>
-    <a class="techfont" href="{% url 'blog:myproject_list'%}">Projects</a>
-    <a class="techfont" href="{% url 'blog:apps_list'%}">Apps</a>
-    <a class="techfont" href="https://github.com/zhao212">Github</a>
-    <a class="techfont" href="https://www.linkedin.com/in/qiyue-zhao/">LinkedIn</a>
-    {% if user.is_authenticated %}
-    <a class="techfont" href="{% url 'blog:post_new' %}" >New Post</a>
-    <a class="techfont" href="{% url 'blog:post_draft_list' %}">Drafts</a>
-    <a class="techfont" href="{% url 'accounts:logout' %}" >Log out</a>
-    <a class="navbar-right">Welcome: {{ user.username }}</a>
-    {% else %}
-    <a href="{% url 'accounts:login' %}" class="techfont">Log in</a>
-    <a href="{% url 'accounts:signup' %}" class="techfont">Sign up</a>
-    {% endif %}
-  </nav> -->
 
   <div class="container" >
     <div class="row">

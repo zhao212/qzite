@@ -4,12 +4,22 @@
   <head>
     <meta charset="utf-8">
     <title>QRcode Generator</title>
-
-
+    <link rel="stylesheet" href="{% static 'CSS/qrcode.css' %}">
   </head>
   <body>
-    <script type="text/javascript" src="{% static 'JS/qrcode.js' %}">  </script>
-    <link rel="stylesheet" href="{% static 'CSS/qrcode.css' %}">
+    <nav id="main-menu">
+       <ul class="nav-bar">
+            <li class="nav-button-home"><a href="{% url 'home' %}">Home</a></li>
+       </ul>
+  </nav>
+  <br>
+  <!-- <div class="content"> -->
 
+<div class="newclass">
+
+
+    <script type="text/javascript" src="{% static 'JS/qrcode.js' %}">  </script>
+    </div>
+    <!-- </div> -->
   </body>
 </html>
