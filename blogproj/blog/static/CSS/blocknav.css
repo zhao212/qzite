@@ -149,16 +149,16 @@ li{
   -webkit-transform: skewX(-25deg) translateX(-15px);
 }
 
-.show-menu {
+/*.show-menu {
 	text-decoration: none;
 	text-align: center;
 	display: none;
   margin-bottom: 20px;
   z-index: 999;
-}
+}*/
 
 /*Hide checkbox*/
-input[type=checkbox]{
+/*input[type=checkbox]{
     display: none;
 }
 
@@ -187,4 +187,4 @@ input[type=checkbox]:checked ~ .menu{
    display:block;
  }
 
-}
+}*/

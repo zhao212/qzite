@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'myresume',
     'webgame1',
     'qrgenerator',
+    'mymsg',
 ]
 
 MIDDLEWARE = [

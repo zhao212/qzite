@@ -1,0 +1,22 @@
+{% extends 'mymsg/msgbox.html' %}
+{% block content %}
+<div class="window-area">
+  <div class="conversation-list">
+    <ul class="">
+      <li class="item active"><a href="{% url 'mymsg:msgcompose'%}"><i class="fa fa-list-alt"></i><span>Compose</span></a></li>
+      <li class="item"><a href="{% url 'mymsg:msginbox'%}"><i class="fa fa-user"></i><span>Inbox</span><i class="fa fa-times"></i></a></li>
+    </ul>
+  </div>
+  <div class="chat-area">
+    <div class="title"><b>Compose</b><i class="fa fa-search"></i></div>
+    <div class="chat-list">
+      <form method="POST" class="post-form">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit" class="save btn btn-default">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

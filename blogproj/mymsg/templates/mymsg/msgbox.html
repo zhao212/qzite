@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Message</title>
+
+  <link rel="stylesheet/less" href="{% static 'CSS/msg.less' %}">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+  <!-- <script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script> -->
+  <script>
+  $(function()
+{
+	$('.chat-area > .chat-list').jScrollPane({
+		mouseWheelSpeed: 30
+	});
+});
+  </script>
+
+</head>
+<body>
+  <div class="window-wrapper">
+  		<div class="window-title">
+  			<!-- <div class="dots">
+  				<i class="fa fa-circle"></i>
+  				<i class="fa fa-circle"></i>
+  				<i class="fa fa-circle"></i>
+  			</div> -->
+  			<div class="title">
+  				<span>My Messages</span>
+  			</div>
+  			<div class="expand">
+  				<i class="fa fa-expand"></i>
+  			</div>
+  		</div>
+      {% block content %}
+
+  		<div class="window-area">
+  			<div class="conversation-list">
+  				<ul class="">
+            <li class="item"><a href="{% url 'mymsg:msgcompose'%}"><i class="fa fa-list-alt"></i><span>Compose</span></a></li>
+  					<li class="item active"><a href="{% url 'mymsg:msginbox'%}"><i class="fa fa-user"></i><span>Inbox</span><i class="fa fa-times"></i></a></li>
+  				</ul>
+
+  			</div>
+  			<div class="chat-area">
+  				<div class="title"><b>Inbox</b><i class="fa fa-search"></i></div>
+  				<div class="chat-list">
+  					<ul>
+              {% for msg in msg_list %}
+  						<li class="me"><a   href="{% url 'mymsg:msgdetail' pk=msg.pk %}">
+  							<div class="name">
+  								<span class="">{{msg.sender}}</span>
+  							</div>
+  							<div class="message">
+                  {% if msg.is_read == False %}
+  								<p><span class="blue-label">{{msg.title}}</span></p>
+                  {%else%}
+                  <p>{{msg.title}}</p>
+                  {%endif%}
+  								<span class="msg-time">{{msg.sent_time}}</span>
+  							</div>
+                </a>
+  						</li>
+              {% endfor %}
+  					</ul>
+  				</div>
+  			</div>
+
+  		</div>
+      {% endblock %}
+  	</div>
+  </body>
+  </html>
