@@ -5,9 +5,9 @@ from django.core.urlresolvers import reverse
 # Create your models here.
 class msg(models.Model):
     sender = models.ForeignKey('auth.User')
-    receiver = models.CharField(max_length=50)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
+    receiver = models.CharField(max_length=50, verbose_name="To")
+    title = models.CharField(max_length=200, verbose_name="Subject")
+    text = models.TextField(verbose_name="Content")
     sent_time = models.DateTimeField(default = timezone.now)
     is_read = models.BooleanField(default = False)
 

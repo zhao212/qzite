@@ -1,5 +1,6 @@
 {% extends 'mymsg/msgbox.html' %}
 {% block content %}
+{{msg.hasread}}
 <div class="window-area">
   <div class="conversation-list">
     <ul class="">
@@ -14,7 +15,7 @@
           <span class="">From: {{msg.sender}}</span>
         </div>
         <div class="message">
-          {{msg.hasread}}
+
           <p>{{msg.title}}</p>
           <span class="msg-time">{{msg.sent_time}}</span>
         </div>
