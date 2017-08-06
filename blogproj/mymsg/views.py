@@ -32,6 +32,20 @@ class msgcompose(CreateView,LoginRequiredMixin):
         return self.render_to_response(self.get_context_data(form=form))
 
 
-class MsgDetailView(DetailView):
+class MsgDetailView(DetailView,LoginRequiredMixin):
     template_name = "mymsg/msgdetail.html"
     model = msg
+
+# @login_required
+# def reply_to_msg(request,receiver):
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.post = post
+#             comment.save()
+#             return redirect('blog:post_detail',pk=post.pk)
+#     else:
+#         form = CommentForm(initial = {'author':request.user})
+#
+#     return render(request,'blog/comment_form.html',{'form':form})

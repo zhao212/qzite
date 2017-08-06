@@ -5,6 +5,16 @@
   <meta charset="utf-8">
   <title>My Message</title>
 
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script src="https://use.fontawesome.com/99168f4c1d.js"></script>
   <link rel="stylesheet/less" href="{% static 'CSS/msg.less' %}">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
   <!-- <script
@@ -13,65 +23,79 @@
   crossorigin="anonymous"></script> -->
   <script>
   $(function()
-{
-	$('.chat-area > .chat-list').jScrollPane({
-		mouseWheelSpeed: 30
-	});
-});
+  {
+    $('.chat-area > .chat-list').jScrollPane({
+      mouseWheelSpeed: 30
+    });
+  });
   </script>
 
 </head>
 <body>
   <div class="window-wrapper">
-  		<div class="window-title">
-  			<!-- <div class="dots">
-  				<i class="fa fa-circle"></i>
-  				<i class="fa fa-circle"></i>
-  				<i class="fa fa-circle"></i>
-  			</div> -->
-  			<div class="title">
-  				<span>My Messages</span>
-  			</div>
-  			<div class="expand">
-  				<i class="fa fa-expand"></i>
-  			</div>
-  		</div>
-      {% block content %}
+    <div class="window-title">
+      <div class="dots">
+      <i class="fa fa-circle"></i>
+      <i class="fa fa-circle"></i>
+      <i class="fa fa-circle"></i>
+    </div>
+    <div class="title">
 
-  		<div class="window-area">
-  			<div class="conversation-list">
-  				<ul class="">
-            <li class="item"><a href="{% url 'mymsg:msgcompose'%}"><i class="fa fa-list-alt"></i><span>Compose</span></a></li>
-  					<li class="item active"><a href="{% url 'mymsg:msginbox'%}"><i class="fa fa-user"></i><span>Inbox</span><i class="fa fa-times"></i></a></li>
-  				</ul>
 
-  			</div>
-  			<div class="chat-area">
-  				<div class="title"><b>Inbox</b><i class="fa fa-search"></i></div>
-  				<div class="chat-list">
-  					<ul>
-              {% for msg in msg_list %}
-  						<li class="me"><a   href="{% url 'mymsg:msgdetail' pk=msg.pk %}">
-  							<div class="name">
-  								<span class="">{{msg.sender}}</span>
-  							</div>
-  							<div class="message">
-                  {% if msg.is_read == False %}
-  								<p><span class="blue-label">{{msg.title}}</span></p>
-                  {%else%}
-                  <p>{{msg.title}}</p>
-                  {%endif%}
-  								<span class="msg-time">{{msg.sent_time}}</span>
-  							</div>
-                </a>
-  						</li>
-              {% endfor %}
-  					</ul>
-  				</div>
-  			</div>
+        <span>My Messages</span>
+      </div>
 
-  		</div>
-      {% endblock %}
-  	</div>
-  </body>
-  </html>
+      <div class="expand"><a href="{% url 'home' %}">
+        <i class="fa fa-home"></i></a>
+      </div>
+
+    </div>
+    {% block content %}
+
+    <div class="window-area">
+      <div class="conversation-list">
+        <ul class="">
+          <li class="item"><a href="{% url 'mymsg:msgcompose'%}"><i class="fa fa-list-alt"></i><span>Compose</span></a></li>
+          <li class="item active"><a href="{% url 'mymsg:msginbox'%}"><i class="fa fa-user"></i><span>Inbox</span></a></li>
+        </ul>
+        <!-- <div class="my-account">
+          <div class="image">
+            <img src="https://secure.gravatar.com/avatar/de76e03aa6b5b0bf675c1e8a990da52f?s=64">
+            <i class="fa fa-circle online"></i>
+          </div>
+          <div class="name">
+            <span>Cucu Ionel</span>
+            <i class="fa fa-angle-down"></i>
+            <span class="availability">Available</span>
+          </div>
+        </div> -->
+      </div>
+      <div class="chat-area">
+        <div class="title"><b>Inbox</b></div>
+        <div class="chat-list">
+          <ul>
+            {% for msg in msg_list %}
+            <li class="me"><a   href="{% url 'mymsg:msgdetail' pk=msg.pk %}">
+              <div class="name">
+                <span class="">{{msg.sender}}</span>
+              </div>
+              <div class="message">
+                {% if msg.is_read == False %}
+                <p><span class="blue-label">{{msg.title}}</span></p>
+                {%else%}
+                <p>{{msg.title}}</p>
+                {%endif%}
+                <span class="msg-time">{{msg.sent_time}}</span>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+
+    </div>
+    {% endblock %}
+  </div>
+</body>
+</html>

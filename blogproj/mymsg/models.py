@@ -14,6 +14,7 @@ class msg(models.Model):
     def hasread(self):
         self.is_read = True
         self.save()
+        return ""
 
     def sendmsg(self):
         self.sent_time = timezone.now()
